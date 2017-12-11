@@ -75,11 +75,13 @@ function vimeovortex_data( $url ) {
 			
 			$video_xml_data = simplexml_load_string(vimeovortex_curl_get($api_endpoint));
 					
-					if (!$video_xml_data) {
-					  echo "<p>Erreur de chargement</p>";
-					}
-					
-			if (!empty($video_xml_data)) {
+			if (!$video_xml_data) {
+			 
+			 	if ( current_user_can( 'manage_options' ) ) {
+			 		echo "<p>Erreur de chargement</p>";
+			 	}
+
+			} else {
 					
 					// transform into array, so we can store it as transient.
 					$videos = json_decode( json_encode($video_xml_data) , 1);
