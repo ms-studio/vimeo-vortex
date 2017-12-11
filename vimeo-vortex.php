@@ -128,10 +128,13 @@ function vimeovortex_output( $videos ) {
 				
 				$vid_ratio = ($vid_height / $vid_width)*100;
 
-				$player_url = 'https://player.vimeo.com/video/' . $item["id"] . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;autoplay=1';	
+				$player_url = 'https://player.vimeo.com/video/' . $item["id"] . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;autoplay=1';
+				
+				$vid_img = $item["thumbnail_large"];
+				$vid_img = str_replace("http:","https:",$vid_img);
 			
 			?><div class="vimeo-item" style="background-image: url(<?php 
-						echo $item["thumbnail_large"] ;
+						echo $vid_img ;
 			?>);" data-ratio="<?php echo $vid_ratio; ?>">
 			
 			<a href="<?php echo $player_url; ?>" data-vimeo="<?php echo $item["id"]; ?>" target="_blank" title="<?php echo $item["title"]; ?>" data-caption="<?php echo $item["title"]; ?>" class="vimeo-img-link vimeoframe unstyled" style="padding-bottom: <?php 
@@ -141,7 +144,7 @@ function vimeovortex_output( $videos ) {
 				
 					<img class="vimeo-still" src="<?php 
 					
-					echo $item["thumbnail_large"] ;
+					echo $vid_img ;
 					
 					?>" alt="" />
 				
@@ -173,11 +176,8 @@ function vimeovortex_output( $videos ) {
 			<?php
 	   				
 		} // end Vimeo Foreach 
-			   
 	} // end test !empty
-	
 } // vimeovortex_output
-
 
 /*
  * Load CSS and JS
