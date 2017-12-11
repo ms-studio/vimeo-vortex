@@ -1,0 +1,127 @@
+/*
+ * Custom CSS
+*/
+
+.vimeo-item {
+	display: block;
+	background-color: #eee;
+	background-size: cover;
+	width: 100%;
+	margin-bottom: 1em;
+	position: relative;
+}
+
+.vimeoframe {
+	display: table;
+	display: block;
+	position: relative;
+	width: 100%;
+	
+	-webkit-transition: background 0.3s ease;
+	-moz-transition: background 0.3s ease;
+	-o-transition: background 0.3s ease;
+	-ms-transition: background 0.3s ease;
+	transition: background 0.3s ease;
+}
+
+.vimeoframe:hover {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.vimeo-item iframe {
+	width: 100% !important;
+	height: 100%;
+	position: absolute;
+}
+
+.vimeo-play-icon {
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	background-image: url('img/video-arrow-116.png');
+	background-repeat: no-repeat;
+	width: 116px;
+	height: 114px;
+	padding: 0;
+	margin-top: -57px;
+	margin-left: -58px;
+	opacity: 0.8;
+/* hide the text */
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+.vimeoframe:hover .vimeo-play-icon {
+	opacity: 0.9;
+}
+
+.vid-legende {
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	padding: 0.8em 0.7em;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.vid-legende p {
+	margin: 0.1em;
+}
+
+.vimeoframe img {
+	display: none;
+}
+
+
+@media only screen 
+and (min-width : 600px) {
+
+	.vid-legende {
+		display: block;	
+	}
+
+}
+
+/* 768px ----------- */
+@media only screen 
+and (min-width : 768px) {
+
+	.vid-legende {
+		font-size: 110%;
+	}
+
+	.vimeo-item {
+		margin-bottom: 1.5em;
+	}	
+
+}
+
+/* 930px - Laptop */
+@media only screen 
+and (min-width : 930px) {
+
+	.vid-legende {
+		font-size: 120%;
+	}
+
+	.vimeo-item {
+		margin-bottom: 2em;
+	}
+
+}
+
+@media only screen 
+and (min-width : 1024px) {
+	
+	.vimeo-play-icon {
+		background-image: url(img/video-arrow-231x228.png);
+		width: 231px;
+		height: 228px;
+		margin-top: -114px;
+		margin-left: -116px;
+	}
+			
+}
