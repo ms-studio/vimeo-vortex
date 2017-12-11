@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Vimeo Vortex
-Plugin URI: https://github.com/ms-studio/video-vortex
+Plugin URI: https://github.com/ms-studio/vimeo-vortex
 Description: Improved Vimeo embeds
 Version: 1.0.1
 Author: Manuel Schmalstieg
