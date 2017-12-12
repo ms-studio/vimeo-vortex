@@ -8,7 +8,39 @@ Based on that, we can build a preview that is just an image, rather than an ifra
 
 When used on pages that load a large amount of videos, that makes a big difference in terms of performance / speed!
 
-Based on previous work on websites.
+Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-studio.net/portfolio/kunstraum-kreuzlingen/), [Information-Fiction](https://ms-studio.net/webdesign/option-information-fiction/).
+
+## Usage
+
+Currently, there two helper functions. Both take as input the `$url` of a Vimeo movie (also: channel, album, user page).
+
+- `vimeovortex($url)` = will produce a player (or list of players).
+- `vimeovortex_array($url)` = will return the vimeo object as array.
+
+With the second function, if you want to **display the video thumbnail**, you can do the following:
+
+```php
+if ( !empty( $video_url ) ) {
+
+	if (function_exists('vimeovortex')) {
+		
+		$video = vimeovortex_array($video_url);
+		
+		$video_img = $video["video"]["thumbnail_large"];
+		$video_img = str_replace("http:","https:",$video_img);
+						    			
+		echo '<img src="'. $video_img .'" alt="" width="'. $video["video"]["width"] .'" height="'. $video["video"]["height"] .'" />';
+		
+	}
+}
+```
+
+## Aknowledgements
+
+This plugin uses some code examples kindly provided by the web:
+
+* Curl function courtesy [Vimeo developper documentation](https://github.com/vimeo/vimeo-oembed-examples/).
+* Vimeo testing function courtesy Alix Axel, on [Stack Overflow](https://stackoverflow.com/questions/11304044/determining-the-vimeo-source-by-url-regex).
 
 See also:
 

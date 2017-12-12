@@ -23,10 +23,9 @@ function vimeovortex( $url ) {
 /*
  * Parameters
  * $url = vimeo URL
- * $format = can be thumbnail_small (100x75), thumbnail_medium (200x150), thumbnail_large
 */
 
-function vimeovortex_array( $url, $format = "small" ) {
+function vimeovortex_array( $url ) {
 	
 			$videos = vimeovortex_data( $url );
 			
@@ -218,6 +217,8 @@ function vimeovortex_curl_get( $url ) {
 
 // Vimeo testing function
 // source: http://stackoverflow.com/questions/11304044/determining-the-vimeo-source-by-url-regex
+// author: 
+// Licence of this code snippet: CC-BY-SA
 
 function vimeovortex_discover( $url ) {
   if ((($url = parse_url($url)) !== false)) {
