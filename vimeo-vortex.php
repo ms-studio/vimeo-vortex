@@ -216,9 +216,9 @@ function vimeovortex_curl_get( $url ) {
 }
 
 // Vimeo testing function
-// source: http://stackoverflow.com/questions/11304044/determining-the-vimeo-source-by-url-regex
-// author: 
-// Licence of this code snippet: CC-BY-SA
+// Source: http://stackoverflow.com/questions/11304044/determining-the-vimeo-source-by-url-regex
+// Author: Alix Axel https://stackoverflow.com/users/89771/alix-axel
+// Licence of this code snippet: CC-BY-SA (code published on Stack Overflow before February 1, 2016)
 
 function vimeovortex_discover( $url ) {
   if ((($url = parse_url($url)) !== false)) {
