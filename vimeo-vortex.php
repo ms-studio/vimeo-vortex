@@ -139,7 +139,12 @@ function vimeovortex_output( $videos ) {
 			<a href="<?php echo $player_url; ?>" data-vimeo="<?php echo $item["id"]; ?>" target="_blank" title="<?php echo $item["title"]; ?>" data-caption="<?php echo $item["title"]; ?>" class="vimeo-img-link vimeoframe unstyled" style="padding-bottom: <?php 
 					echo $vid_ratio; ?>%">
 				
-					<div class="vimeo-play-icon">Play!</div>
+					<div class="vimeo-play-icon">
+						<svg viewBox="0 0 20 20" preserveAspectRatio="xMidYMid" tabindex="-1">
+							<title>Play!</title>
+							<polygon class="fill" points="1,0 20,10 1,20"></polygon>
+						</svg>
+					</div>
 				
 					<img class="vimeo-still" src="<?php 
 					
@@ -186,7 +191,9 @@ function vimeovortex_scripts() {
 	
 	wp_enqueue_style( 
 		'vimeovortex', 
-		plugins_url( 'vimeo-vortex.css', __FILE__ )
+		plugins_url( 'vimeo-vortex.css', __FILE__ ),
+		array(),
+		'20171212'
 	);
 	
 	wp_enqueue_script( 

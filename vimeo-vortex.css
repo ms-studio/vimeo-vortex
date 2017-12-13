@@ -37,24 +37,27 @@
 .vimeo-play-icon {
 	position: absolute;
 	text-align: center;
-	top: 50%;
-	left: 50%;
-	background-image: url('img/video-arrow-116.png');
-	background-repeat: no-repeat;
-	width: 116px;
-	height: 114px;
-	padding: 0;
-	margin-top: -57px;
-	margin-left: -58px;
-	opacity: 0.8;
-/* hide the text */
-	font: 0/0 a;
-	text-shadow: none;
-	color: transparent;
+	top: 35%;
+	left: 35%;
+	width: 30%;
+	height: 30%;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 1em;
 }
 
 .vimeoframe:hover .vimeo-play-icon {
-	opacity: 0.9;
+	background: rgba(0, 0, 0, 0.3);
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.vimeo-play-icon svg {
+	height: 60%;
+	margin-top: 10%;
+	margin-left: 10%;
+}
+
+.vimeo-play-icon svg polygon {
+	fill: white;
 }
 
 .vid-legende {
@@ -117,11 +120,10 @@ and (min-width : 930px) {
 and (min-width : 1024px) {
 	
 	.vimeo-play-icon {
-		background-image: url(img/video-arrow-231x228.png);
-		width: 231px;
+		/*width: 231px;
 		height: 228px;
 		margin-top: -114px;
-		margin-left: -116px;
+		margin-left: -116px;*/
 	}
 			
 }
