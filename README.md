@@ -1,6 +1,6 @@
 # Vimeo Vortex
 
-A WordPress plugin that adds some functionality to improve vimeo embeds.
+A WordPress plugin that adds some functionality to improve Vimeo embeds.
 
 Most importantly, it uses the Vimeo API to load information about the video. 
 
@@ -8,11 +8,11 @@ Based on that, we can build a preview that is just an image, rather than an ifra
 
 When used on pages that load a large amount of videos, that makes a big difference in terms of performance / speed!
 
-Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-studio.net/portfolio/kunstraum-kreuzlingen/), [Information-Fiction](https://ms-studio.net/webdesign/option-information-fiction/).
+Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-studio.net/portfolio/kunstraum-kreuzlingen/), [Information-Fiction](https://ms-studio.net/webdesign/option-information-fiction/). It is in use on [https://eracom.ch/](https://eracom.ch/) and [https://kinogeneva.ch/](https://kinogeneva.ch/).
 
-## Usage
+## Usage
 
-Currently, there two helper functions. Both take as input the `$url` of a Vimeo movie (also: channel, album, user page).
+Currently, there are two helper functions. Both take as input the `$url` of a Vimeo movie (also: channel, album, user page).
 
 - `vimeovortex($url)` = will produce a player (or list of players).
 - `vimeovortex_array($url)` = will return the vimeo object as array.
