@@ -3,7 +3,7 @@
 Plugin Name: Vimeo Vortex
 Plugin URI: https://github.com/ms-studio/vimeo-vortex
 Description: Improved Vimeo embeds
-Version: 1.0.1
+Version: 1.0.2
 Author: Manuel Schmalstieg
 Author URI: https://github.com/ms-studio
 */
@@ -45,6 +45,7 @@ function vimeovortex_data( $url ) {
 	
 			// echo '<p> transient is redefined </p>';
 			
+			$api_endpoint = 'https://vimeo.com/api/oembed.xml?url='.$url;
 			
 			$video_xml_data = simplexml_load_string(vimeovortex_curl_get($api_endpoint));
 					
@@ -78,28 +79,35 @@ function vimeovortex_data( $url ) {
  * Parameter: $videos (array with data from Vimeo XML)
 */
 
-function vimeovortex_output( $videos ) {
+function vimeovortex_output( $item ) {
 
 	// test if the array exists 
-	if (!empty($videos)) {
- 			   
-		foreach ($videos as $row => $item) { 
+	if (!empty($item)) {
 		
-				$vid_height = $item["height"];
-				$vid_width = $item["width"];
+//		echo '<pre>VIDEO:';
+//		var_dump($item);
+//		echo '</pre>';
+		
+ 		$vid_height = $item["height"];
+		$vid_width = $item["width"];
 				
-				$vid_ratio = ($vid_height / $vid_width)*100;
-
-				$player_url = 'https://player.vimeo.com/video/' . $item["id"] . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;autoplay=1';
+		if (is_numeric($vid_height)) {
+					$vid_ratio = ($vid_height / $vid_width)*100;
+		}
 				
-				$vid_img = $item["thumbnail_large"];
+		$player_url = 'https://player.vimeo.com/video/' . $item["video_id"] . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;autoplay=1';
+				
+				$vid_img = $item["thumbnail_url"];
 				$vid_img = str_replace("http:","https:",$vid_img);
+				$vid_img = str_replace("_295x166.jpg","_".($vid_width*2)."x".($vid_height*2).".jpg",$vid_img);
+				
+				//$vid_img = 'https://i.vimeocdn.com/video/'.$item["video_id"].'_'.$vid_width.'x'.$vid_height.'.jpg'
 			
 			?><div class="vimeo-item" style="background-image: url(<?php 
 						echo $vid_img ;
 			?>);" data-ratio="<?php echo $vid_ratio; ?>">
-			
-			<a href="<?php echo $player_url; ?>" data-vimeo="<?php echo $item["id"]; ?>" target="_blank" title="<?php echo $item["title"]; ?>" data-caption="<?php echo $item["title"]; ?>" class="vimeo-img-link vimeoframe unstyled" style="padding-bottom: <?php 
+ 		
+ 		<a href="<?php echo $player_url; ?>" data-vimeo="<?php echo $item["video_id"]; ?>" target="_blank" title="<?php echo $item["title"]; ?>" data-caption="<?php echo $item["title"]; ?>" class="vimeo-img-link vimeoframe unstyled" style="padding-bottom: <?php 
 					echo $vid_ratio; ?>%">
 				
 					<div class="vimeo-play-icon">
@@ -124,13 +132,18 @@ function vimeovortex_output( $videos ) {
 				  <p class="img-caption vid-duration">Durée: <?php 
 				
 				// duration
-				$videosecs = $item["duration"] ;
+				$videosecs = $item["duration"];
 				
-				$init = $videosecs;
-				$hours = floor($init / 3600);
-				$minutes = floor(($init / 60) % 60);
-				$seconds = $init % 60;
+				if (is_numeric($videosecs)) {
+				 
+				 	$init = $videosecs;
+					$hours = floor($init / 3600);
+					$minutes = floor(($init / 60) % 60);
+					$seconds = $init % 60;
+				 
+				 }
 				
+
 				// echo "$hours:$minutes:$seconds";
 				
 				printf("%02d:%02d:%02d", $hours, $minutes, $seconds);
@@ -141,8 +154,6 @@ function vimeovortex_output( $videos ) {
 			
 			  </div><!-- .vimeo-item -->
 			<?php
-	   				
-		} // end Vimeo Foreach 
 	} // end test !empty
 } // vimeovortex_output
 
