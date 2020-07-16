@@ -36,15 +36,6 @@ function vimeovortex_array( $url ) {
 
 function vimeovortex_data( $url ) {
 	
-	$vimeo_test = vimeovortex_discover($url);
-						
-			if (isset($vimeo_test['type'])) {
-				$vimeo_type = $vimeo_test['type'];
-			}
-			if (isset($vimeo_test['id'])) {
-				$vimeo_id = $vimeo_test['id'];
-			}
-			
 			/* TEST FOR TRANSIENT
 			***************************************/
 			
@@ -53,24 +44,7 @@ function vimeovortex_data( $url ) {
 		if ( false === ( $videos = get_transient( $url ) ) ) {	
 	
 			// echo '<p> transient is redefined </p>';
-							
-			if (isset($vimeo_type) && $vimeo_type == 'channel') {
 			
-				$api_endpoint = 'http://vimeo.com/api/v2/channel/'.$vimeo_id.'/videos.xml';
-				
-			} else if (isset($vimeo_type) && $vimeo_type == 'album') {
-			
-				$api_endpoint = 'http://vimeo.com/api/v2/album/'.$vimeo_id.'/videos.xml';
-				
-			} else if ($vimeo_type == 'item') { // single video item
-			
-				$api_endpoint = 'http://vimeo.com/api/v2/video/'.$vimeo_id.'.xml';
-			
-			} else if ($vimeo_type == 'user') { // user page
-			
-				$api_endpoint = 'http://vimeo.com/api/v2/'.$vimeo_id.'/videos.xml';
-			
-			}
 			
 			$video_xml_data = simplexml_load_string(vimeovortex_curl_get($api_endpoint));
 					
@@ -84,18 +58,7 @@ function vimeovortex_data( $url ) {
 					
 					// transform into array, so we can store it as transient.
 					$videos = json_decode( json_encode($video_xml_data) , 1);
-					
-					if ($vimeo_type == 'user') {
-						// are there one or several videos?
-						if ( isset( $videos["video"][1]) ) {
-							// several videos
-							$videos = $videos["video"];
-						} else {
-							// only one video
-							$videos[0] = $videos["video"];
-						}
-					}
-					
+
 					set_transient( 
 						$url, 
 						$videos, 
