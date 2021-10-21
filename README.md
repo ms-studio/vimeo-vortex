@@ -26,8 +26,7 @@ if ( !empty( $video_url ) ) {
 		
 		$video = vimeovortex_array($video_url);
 		
-		$video_img = $video["video"]["thumbnail_large"];
-		$video_img = str_replace("http:","https:",$video_img);
+		$video_img = $video["video"]["thumbnail_url"];
 						    			
 		echo '<img src="'. $video_img .'" alt="" width="'. $video["video"]["width"] .'" height="'. $video["video"]["height"] .'" />';
 		
