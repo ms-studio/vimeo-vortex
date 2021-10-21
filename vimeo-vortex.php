@@ -52,7 +52,7 @@ function vimeovortex_data( $url ) {
 			if (!$video_xml_data) {
 			 
 			 	if ( current_user_can( 'manage_options' ) ) {
-			 		echo "<p>Erreur de chargement</p>";
+			 		echo "<p>Erreur de chargement pour ".$api_endpoint."</p>";
 			 	}
 
 			} else {
