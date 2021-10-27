@@ -2,7 +2,7 @@
 
 A WordPress plugin that adds some functionality to improve Vimeo embeds.
 
-Most importantly, it uses the Vimeo API to load information about the video. 
+Most importantly, it uses the **Vimeo oEmbed API** to load information about the video. 
 
 Based on that, we can build a preview that is just an image, rather than an iframe. When the user clicks on it, we create the iframe and play the video.
 
@@ -12,9 +12,9 @@ Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-
 
 ## Usage
 
-Currently, there are two helper functions. Both take as input the `$url` of a Vimeo movie (also: channel, album, user page).
+Currently, there are two helper functions. Both take as input the `$url` of a Vimeo movie.
 
-- `vimeovortex($url)` = will produce a player (or list of players).
+- `vimeovortex($url)` = will produce a player.
 - `vimeovortex_array($url)` = will return the vimeo object as array.
 
 With the second function, if you want to **display the video thumbnail**, you can do the following:
@@ -38,11 +38,11 @@ if ( !empty( $video_url ) ) {
 
 This plugin uses some code examples kindly provided by the web:
 
-* Curl function courtesy [Vimeo developper documentation](https://github.com/vimeo/vimeo-oembed-examples/).
+* Curl function courtesy [Vimeo oEmbed API Examples](https://github.com/vimeo/vimeo-oembed-examples/).
 * Vimeo testing function courtesy Alix Axel, on [Stack Overflow](https://stackoverflow.com/questions/11304044/determining-the-vimeo-source-by-url-regex).
 
 See also:
 
 * https://ms-studio.net/notes/using-the-vimeo-api-in-wordpress/
-* https://vimeo.com/forums/api/topic:285857
+* https://developer.vimeo.com/api/oembed/videos
 
