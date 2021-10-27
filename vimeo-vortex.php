@@ -13,10 +13,10 @@ Author URI: https://github.com/ms-studio
 function vimeovortex( $url ) {
 	
 			// 1: Produce Data
-			$videos = vimeovortex_data( $url );
+			$video = vimeovortex_data( $url );
 			
 			// 2: Produce Output
-			vimeovortex_output( $videos );
+			vimeovortex_output( $video );
 			
 }
 
@@ -27,9 +27,9 @@ function vimeovortex( $url ) {
 
 function vimeovortex_array( $url ) {
 	
-			$videos = vimeovortex_data( $url );
+			$video = vimeovortex_data( $url );
 			
-			return $videos;
+			return $video;
 			
 }
 
@@ -37,46 +37,51 @@ function vimeovortex_array( $url ) {
 function vimeovortex_data( $url ) {
 	
 			/* TEST FOR TRANSIENT
-			***************************************/
-			
+			*********************/
+
+			// if $url is just the vimeo ID, add the beginning:
+				if (is_numeric($url)) {
+					$url = 'https://vimeo.com/'.$url;
+			}
+
 			// delete_transient( $url );
 		
-		if ( false === ( $videos = get_transient( $url ) ) ) {	
+		if ( false === ( $video = get_transient( $url ) ) ) {	
 	
-			// echo '<p> transient is redefined </p>';
+			$api_endpoint_json = 'https://vimeo.com/api/oembed.json?url='.$url;
 			
-			$api_endpoint = 'https://vimeo.com/api/oembed.xml?url='.$url;
-			
-			$video_xml_data = simplexml_load_string(vimeovortex_curl_get($api_endpoint));
+			$vimeo_api_data = vimeovortex_curl_get($api_endpoint_json);
 					
-			if (!$video_xml_data) {
+			if (!$vimeo_api_data) {
 			 
 			 	if ( current_user_can( 'manage_options' ) ) {
-			 		echo "<p>Erreur de chargement pour ".$api_endpoint."</p>";
+			 		echo "<p>Erreur de chargement pour ".$api_endpoint_json."</p>";
 			 	}
 
 			} else {
 					
+					// vimeo API has returned data.
 					// transform into array, so we can store it as transient.
-					$videos = json_decode( json_encode($video_xml_data) , 1);
+
+					$video = json_decode($vimeo_api_data, true);
 
 					set_transient( 
 						$url, 
-						$videos, 
-						12 * HOUR_IN_SECONDS 
+						$video, 
+						15 * DAY_IN_SECONDS 
 					); 
 					
-			} // end testing if !empty 
+			} // end testing vimeo API if !empty 
 			
 	} // end testing for the transient
 	
-	return $videos;
+	return $video;
 }
 
 
 /*
  * Generate output
- * Parameter: $videos (array with data from Vimeo XML)
+ * Parameter: $video (array with data from Vimeo API)
 */
 
 function vimeovortex_output( $item ) {
