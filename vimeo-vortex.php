@@ -39,10 +39,13 @@ function vimeovortex_data( $url ) {
 			/* TEST FOR TRANSIENT
 			*********************/
 
+			// trim whitespaces
+			$url = trim($url);
+
 			// if $url is just the vimeo ID, add the beginning:
 				if (is_numeric($url)) {
 					$url = 'https://vimeo.com/'.$url;
-			}
+				}
 
 			// delete_transient( $url );
 		
