@@ -8,7 +8,7 @@ Based on that, we can build a preview that is just an image, rather than an ifra
 
 When used on pages that load a large amount of videos, that makes a big difference in terms of performance / speed!
 
-Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-studio.net/portfolio/kunstraum-kreuzlingen/), [Information-Fiction](https://ms-studio.net/webdesign/option-information-fiction/). It is in use on [https://eracom.ch/](https://eracom.ch/) and [https://kinogeneva.ch/](https://kinogeneva.ch/).
+Based on previous work on websites including [Kunstraum Kreuzlingen](https://ms-studio.net/portfolio/kunstraum-kreuzlingen/), [Information-Fiction](https://ms-studio.net/webdesign/option-information-fiction/). It is in use on [kunstraum-kreuzlingen.ch](https://kunstraum-kreuzlingen.ch/), [eracom.ch](https://eracom.ch/) and [kinogeneva.ch](https://kinogeneva.ch/).
 
 ## Usage
 
